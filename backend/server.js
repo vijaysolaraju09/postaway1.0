@@ -42,8 +42,10 @@ server.use(
 
 server.use("/api/users", userRouter);
 server.use("/api/posts", postRouter);
-server.use("/api/comments", jwtAuth, commentRouter);
-server.use("/api/likes", jwtAuth, likesRouter);
+// server.use("/api/comments", jwtAuth, commentRouter);
+// server.use("/api/likes", jwtAuth, likesRouter);
+server.use("/api/comments", commentRouter);
+server.use("/api/likes", likesRouter);
 
 server.listen(PORT, () => {
   console.log(`Server is up and running at Port: ${PORT}`);
