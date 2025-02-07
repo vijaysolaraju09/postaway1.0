@@ -7,7 +7,8 @@ import store from "./store/store";
 import { Route, Routes } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
-
+import axios from "axios";
+axios.defaults.withCredentials = true;
 function App() {
   return (
     <>

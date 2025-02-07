@@ -14,6 +14,7 @@ import ShortProfile from "./ShortProfile";
 import FollowButton from "./FollowButton";
 import { useSelector } from "react-redux";
 import PlaceholderBox from "./PlaceholderBox";
+import { API_URL } from "../utils/helper";
 
 const Post = ({ post, fetchPosts }) => {
   const { isAuth } = useSelector((state) => state.auth);
@@ -34,10 +35,10 @@ const Post = ({ post, fetchPosts }) => {
   const showCommentsRef = useRef(null);
 
   const handleLike = async () => {
-    const likeResp = await axios.get(`/api/likes/toggle/${post._id}`);
+    const likeResp = await axios.get(`${API_URL}/api/likes/toggle/${post._id}`);
 
     const likeResponse = await axios.get(
-      `/api/likes/likes-for-a-post/${post._id}`
+      `${API_URL}/api/likes/likes-for-a-post/${post._id}`
     );
     setLikes(likeResponse.data);
 
@@ -54,7 +55,9 @@ const Post = ({ post, fetchPosts }) => {
   };
 
   const commentPosted = async () => {
-    const commentsResponse = await axios.get(`/api/comments/${post._id}`);
+    const commentsResponse = await axios.get(
+      `${API_URL}/api/comments/${post._id}`
+    );
     console.log(commentsResponse.data);
     setComments(commentsResponse.data);
   };
@@ -62,26 +65,27 @@ const Post = ({ post, fetchPosts }) => {
   useEffect(() => {
     const fetchDetails = async () => {
       try {
-        const userResponse = await axios.get(`/api/posts/user/${post._id}`);
+        const userResponse = await axios.get(
+          `${API_URL}/api/posts/user/${post._id}`
+        );
         setUser(userResponse.data);
 
         const likeResponse = await axios.get(
-          `/api/likes/likes-for-a-post/${post._id}`
+          `${API_URL}/api/likes/likes-for-a-post/${post._id}`
         );
         setLikes(likeResponse.data);
 
         const likedResponse = await axios.get(
-          `/api/likes/is-liked-by-user/${post._id}`
+          `${API_URL}/api/likes/is-liked-by-user/${post._id}`
         );
         // console.log(`Post Id: ${post._id}` + likedResponse.data);
         setLiked(likedResponse.data);
 
-        const commentsResponse = await axios.get(`/api/comments/${post._id}`);
+        const commentsResponse = await axios.get(
+          `${API_URL}/api/comments/${post._id}`
+        );
 
         setComments(commentsResponse?.data);
-
-        // const currUserResponse = await axios.get('/api/users/get-user-id-of-logged-in-user');
-        // setCurrUser(currUserResponse.data);
 
         const userInfo = Cookies.get("userInfo");
         setCurrUser(JSON.parse(userInfo));

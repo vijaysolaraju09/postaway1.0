@@ -13,6 +13,7 @@ import { FaUserEdit } from "react-icons/fa";
 import styles from "../styles/editProfile.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserEmail, setUserName } from "../store/slices/userSlice";
+import { API_URL } from "../utils/helper";
 
 const EditProfile = () => {
   let { userName, userEmail } = useSelector((state) => state.user);
@@ -49,7 +50,7 @@ const EditProfile = () => {
   const sendOtp = async () => {
     try {
       setOtpSent(true);
-      const response = await axios.post("/api/users/send-otp", {
+      const response = await axios.post(`${API_URL}/api/users/send-otp`, {
         email: newEmail,
       });
       if (response.status === 200) {
@@ -71,7 +72,7 @@ const EditProfile = () => {
   const verifyOtp = async () => {
     const otpString = otp.join("");
     try {
-      const response = await axios.post("/api/users/verify-otp", {
+      const response = await axios.post(`${API_URL}/api/users/verify-otp`, {
         email: newEmail,
         otp: otpString,
       });
@@ -103,7 +104,7 @@ const EditProfile = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await axios.post("/api/users/update-name", {
+      const response = await axios.post(`${API_URL}/api/users/verify-otp`, {
         newUserName,
       });
       dispatch(setUserName(newUserName));

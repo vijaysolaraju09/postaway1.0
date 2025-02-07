@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import styles from "../styles/createPost.module.css";
 import { CiCirclePlus } from "react-icons/ci";
+import { API_URL } from "../utils/helper";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +27,11 @@ const CreatePost = () => {
         <Modal.Header closeButton className={styles.modalHeader}>
           <Modal.Title>Create new post</Modal.Title>
         </Modal.Header>
-        <form action="/api/posts" method="post" enctype="multipart/form-data">
+        <form
+          action={`${API_URL}/api/posts`}
+          method="post"
+          enctype="multipart/form-data"
+        >
           <Modal.Body className={styles.modalBody}>
             <div className="mb-3">
               <label for="formFile" className="form-label">

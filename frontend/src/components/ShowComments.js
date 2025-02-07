@@ -9,7 +9,7 @@ const ShowComments = ({ comments }) => {
   // useEffect(()=>{
 
   //     const fetchComments = async () => {
-  //         const commentsResponse = await axios.get(`/api/comments/${postId}`);
+  //         const commentsResponse = await axios.get(`${API_URL}/api/comments/${postId}`);
   //         // console.log(commentsResponse.data);
   //         setComments(commentsResponse.data);
   //     }

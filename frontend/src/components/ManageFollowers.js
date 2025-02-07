@@ -9,6 +9,7 @@ import ShortProfileByUserId from "./ShortProfileByUserId";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFollower } from "../store/slices/userSlice";
 import axios from "axios";
+import { API_URL } from "../utils/helper";
 
 const ManageFollowers = ({ name, ...props }) => {
   const { followerIds: initialFollowerIds } = useSelector(
@@ -30,7 +31,7 @@ const ManageFollowers = ({ name, ...props }) => {
   const handleRemoveFollower = async (followerId) => {
     try {
       const removeResponse = await axios.delete(
-        `/api/users/remove-follower/${followerId}`
+        `${API_URL}/api/users/remove-follower/${followerId}`
       );
       console.log(removeResponse.data);
       dispatch(removeFollower(followerId));

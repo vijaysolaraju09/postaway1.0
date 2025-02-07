@@ -13,6 +13,7 @@ import logo from "../assets/postaway-logo.png";
 
 import { useSelector } from "react-redux";
 import { Logout } from "../components/Logout";
+import { API_URL } from "../utils/helper";
 
 const Profile = () => {
   const { userId } = useParams();
@@ -23,7 +24,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchCurrUserId = async () => {
       const userIdResponse = await axios.get(
-        `/api/users/get-user-id-of-logged-in-user`
+        `${API_URL}/api/users/get-user-id-of-logged-in-user`
       );
       setCurrUserId(userIdResponse.data);
     };
@@ -31,7 +32,7 @@ const Profile = () => {
 
     const fetchUser = async () => {
       const userResponse = await axios.get(
-        `/api/users/get-user-by-id/${userId}`
+        `${API_URL}/api/users/get-user-by-id/${userId}`
       );
       setUser(userResponse.data);
     };

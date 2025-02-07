@@ -14,6 +14,7 @@ import { Logout } from "../components/Logout";
 import { setUserInfo } from "../store/slices/userSlice";
 import Followers from "../components/Followers";
 import Following from "../components/Following";
+import { API_URL } from "../utils/helper";
 
 function Home() {
   // const [userInfo, setUserInfo] = useState("");
@@ -30,7 +31,7 @@ function Home() {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get("/api/posts/all");
+      const response = await axios.get(`${API_URL}/api/posts/all`);
       setPosts(response.data.reverse());
       setLoadingPosts(false);
     } catch (err) {
@@ -39,7 +40,9 @@ function Home() {
   };
   const fetchUserDetails = async (userId) => {
     try {
-      const response = await axios.get(`/api/users/get-user-by-id/${userId}`);
+      const response = await axios.get(
+        `${API_URL}/api/users/get-user-by-id/${userId}`
+      );
 
       dispatch(setUserInfo(response.data));
     } catch (err) {

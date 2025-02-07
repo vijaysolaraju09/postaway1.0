@@ -8,6 +8,7 @@ import { FaHeart, FaComment } from "react-icons/fa";
 
 import ProfileImg from "./ProfileImg";
 import EditPostModal from "./EditPostModal";
+import { API_URL } from "../utils/helper";
 
 const LikedPosts = ({ userId }) => {
   const [posts, setPosts] = useState([]);
@@ -22,7 +23,7 @@ const LikedPosts = ({ userId }) => {
     const fetchUserId = async () => {
       try {
         const userIdResponse = await axios.get(
-          "/api/users/get-user-id-of-logged-in-user"
+          `${API_URL}/api/users/get-user-id-of-logged-in-user`
         );
         setCurrUserId(userIdResponse.data);
       } catch (err) {
@@ -36,19 +37,21 @@ const LikedPosts = ({ userId }) => {
     const fetchPosts = async () => {
       try {
         const postIdsResponse = await axios.get(
-          `/api/likes/posts-liked-by-user/${userId}`
+          `${API_URL}/api/likes/posts-liked-by-user/${userId}`
         );
         const postIds = postIdsResponse.data;
         console.log(postIds);
 
         const userNameResponse = await axios.get(
-          `/api/users/get-user-by-id/${userId}`
+          `${API_URL}/api/users/get-user-by-id/${userId}`
         );
         setUserName(userNameResponse.data.name);
 
         const postArr = await Promise.all(
           postIds.map(async (like) => {
-            const postResponse = await axios.get(`/api/posts/${like.postId}`);
+            const postResponse = await axios.get(
+              `${API_URL}/api/posts/${like.postId}`
+            );
             return {
               ...postResponse.data,
               likes: [],
@@ -74,13 +77,13 @@ const LikedPosts = ({ userId }) => {
         const updatedPosts = await Promise.all(
           posts.map(async (post) => {
             const likesResponse = await axios.get(
-              `/api/likes/likes-for-a-post/${post._id}`
+              `${API_URL}/api/likes/likes-for-a-post/${post._id}`
             );
             const commentsResponse = await axios.get(
-              `/api/comments/comments-for-a-post/${post._id}`
+              `${API_URL}/api/comments/comments-for-a-post/${post._id}`
             );
             const userResponse = await axios.get(
-              `/api/users/get-user-by-id/${post.userId}`
+              `${API_URL}/api/users/get-user-by-id/${post.userId}`
             );
 
             return {
@@ -105,13 +108,13 @@ const LikedPosts = ({ userId }) => {
   const handleUpdatePost = async (updatedPost) => {
     try {
       const likesResponse = await axios.get(
-        `/api/likes/likes-for-a-post/${updatedPost._id}`
+        `${API_URL}/api/likes/likes-for-a-post/${updatedPost._id}`
       );
       const commentsResponse = await axios.get(
-        `/api/comments/comments-for-a-post/${updatedPost._id}`
+        `${API_URL}/api/comments/comments-for-a-post/${updatedPost._id}`
       );
       const userResponse = await axios.get(
-        `/api/users/get-user-by-id/${userId}`
+        `${API_URL}/api/users/get-user-by-id/${userId}`
       );
 
       const likes = likesResponse.data;

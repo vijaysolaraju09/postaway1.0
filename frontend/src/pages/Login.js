@@ -10,6 +10,9 @@ import styles from "../styles/login.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthState } from "../store/slices/authSlice";
 import { setUserInfo } from "../store/slices/userSlice";
+import { API_URL } from "../utils/helper";
+
+axios.defaults.withCredentials = true;
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +25,21 @@ function Login() {
     e.preventDefault();
     try {
       // startLoading();
-      const response = await axios.post("/api/users/signin", {
+      const response = await axios.post(`${API_URL}/api/users/signin`, {
         email,
         password,
       });
       dispatch(setAuthState(true));
-      const info = Cookies.get("userInfo");
-      dispatch(setUserInfo(JSON.parse(info)));
+      const info = response.data.user;
+      Cookies.set("userInfo", JSON.stringify(info), {
+        expires: 1, // Cookie expires in 1 day
+        path: "/", // Cookie accessible across the app
+      });
+      Cookies.set("jwtToken", JSON.stringify(response.data.jwtToken), {
+        expires: 1, // Cookie expires in 1 day
+        path: "/", // Cookie accessible across the app
+      });
+      dispatch(setUserInfo(info));
       navigate("/");
     } catch (err) {
       setError("Invalid credentials");

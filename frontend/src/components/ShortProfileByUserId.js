@@ -3,6 +3,7 @@ import ProfileImg from "./ProfileImg";
 import styles from "../styles/shortProfile.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../utils/helper";
 
 const ShortProfileByUserId = ({ userId }) => {
   const [user, setUser] = useState({});
@@ -10,7 +11,7 @@ const ShortProfileByUserId = ({ userId }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const userResponse = await axios.get(
-        `/api/users/get-user-by-id/${userId}`
+        `${API_URL}/api/users/get-user-by-id/${userId}`
       );
       setUser(userResponse.data);
     };

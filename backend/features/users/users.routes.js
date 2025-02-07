@@ -19,6 +19,8 @@ router.post("/signup", (req, res) => {
   userController.signUp(req, res);
 });
 router.post("/signin", (req, res) => {
+  console.log("hi");
+
   userController.signIn(req, res);
 });
 router.post("/add-following/:userId", (req, res) => {

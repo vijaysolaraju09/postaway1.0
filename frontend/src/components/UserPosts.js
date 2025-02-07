@@ -6,6 +6,7 @@ import Card from "react-bootstrap/Card";
 import Placeholder from "react-bootstrap/Placeholder";
 import { FaHeart, FaComment } from "react-icons/fa";
 import EditPostModal from "./EditPostModal";
+import { API_URL } from "../utils/helper";
 // import EditPostModal from "./EditPostModal";
 
 const UserPosts = ({ userId }) => {
@@ -19,22 +20,22 @@ const UserPosts = ({ userId }) => {
     const fetchPosts = async () => {
       try {
         const postsResponse = await axios.get(
-          `/api/posts/user-posts/${userId}`
+          `${API_URL}/api/posts/user-posts/${userId}`
         );
         const postsData = postsResponse.data;
 
         const userNameResponse = await axios.get(
-          `/api/users/get-user-by-id/${userId}`
+          `${API_URL}/api/users/get-user-by-id/${userId}`
         );
         setUserName(userNameResponse.data.name);
 
         const updatedPosts = await Promise.all(
           postsData.map(async (post) => {
             const likesResponse = await axios.get(
-              `/api/likes/likes-for-a-post/${post._id}`
+              `${API_URL}/api/likes/likes-for-a-post/${post._id}`
             );
             const commentsResponse = await axios.get(
-              `/api/comments/comments-for-a-post/${post._id}`
+              `${API_URL}/api/comments/comments-for-a-post/${post._id}`
             );
 
             setLikes(likesResponse.data);
@@ -61,10 +62,10 @@ const UserPosts = ({ userId }) => {
   const handleUpdatePost = async (updatedPost) => {
     try {
       const likesResponse = await axios.get(
-        `/api/likes/likes-for-a-post/${updatedPost._id}`
+        `${API_URL}/api/likes/likes-for-a-post/${updatedPost._id}`
       );
       const commentsResponse = await axios.get(
-        `/api/comments/comments-for-a-post/${updatedPost._id}`
+        `${API_URL}/api/comments/comments-for-a-post/${updatedPost._id}`
       );
       const likes = likesResponse.data;
       const comments = commentsResponse.data;

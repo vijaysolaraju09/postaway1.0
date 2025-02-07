@@ -9,6 +9,7 @@ import { FaUserSlash } from "react-icons/fa";
 import ShortProfileByUserId from "./ShortProfileByUserId";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFollowing } from "../store/slices/userSlice";
+import { API_URL } from "../utils/helper";
 
 const ManageFollowing = ({ name, ...props }) => {
   const { followingIds: initialFollowingIds } = useSelector(
@@ -30,7 +31,7 @@ const ManageFollowing = ({ name, ...props }) => {
     try {
       console.log("Following Id" + followingId);
       const removeResponse = await axios.delete(
-        `/api/users/remove-following/${followingId}`
+        `${API_URL}/api/users/remove-following/${followingId}`
       );
       console.log(removeResponse.data);
       dispatch(removeFollowing(followingId));

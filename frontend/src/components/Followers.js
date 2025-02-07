@@ -4,6 +4,7 @@ import styles from "../styles/followers.module.css";
 import ShortProfile from "./ShortProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { startLoading, stopLoading } from "../store/slices/loadingSlice";
+import { API_URL } from "../utils/helper";
 
 const Followers = () => {
   const { followerIds } = useSelector((state) => state.user);
@@ -17,7 +18,7 @@ const Followers = () => {
 
       for (let followerId of followerIds) {
         let userResponse = await axios.get(
-          `/api/users/get-user-by-id/${followerId}`
+          `${API_URL}/api/users/get-user-by-id/${followerId}`
         );
         let user = userResponse.data;
         arr.push(user);

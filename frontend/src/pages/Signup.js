@@ -5,6 +5,7 @@ import { TbLockPassword } from "react-icons/tb";
 import styles from "../styles/login.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../utils/helper";
 function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ function Signup() {
     e.preventDefault();
     try {
       // startLoading();
-      const response = await axios.post("/api/users/signup", {
+      const response = await axios.post(`${API_URL}/api/users/signup`, {
         name,
         email,
         password,

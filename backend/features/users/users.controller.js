@@ -10,7 +10,6 @@ import UserRepository from "./users.repository.js";
 import { log } from "console";
 
 const secretKey = process.env.JWT_SECRET;
-// console.log("Secret key: " + secretKey);
 
 export default class UserController {
   constructor() {
@@ -30,39 +29,34 @@ export default class UserController {
   }
 
   async signIn(req, res, next) {
-    try {
-      const { email, password } = req.body;
-      const user = await this.userRepository.getUser(email, password);
-      if (user) {
-        const token = jwt.sign(
-          {
-            userId: user._id,
-            email: user.email,
-          },
-          secretKey,
-          {
-            expiresIn: "24h",
-          }
-        );
-        res.cookie("jwtToken", token, {
-          maxAge: 24 * 60 * 60 * 1000,
-        });
-        res.cookie("userId", user._id, {
-          maxAge: 24 * 60 * 60 * 1000,
-        });
-        res.cookie("userInfo", JSON.stringify(user), {
-          maxAge: 24 * 60 * 60 * 1000,
-        });
-        res.status(200).send({
-          jwtToken: token,
-          user: user,
-        });
-      } else {
-        res.status(401).send("Invalid credentials");
-      }
-    } catch (err) {
-      console.error("Error signing in user:", err);
-      res.status(500).send("Internal server error");
+    const { email, password } = req.body;
+    const user = await this.userRepository.getUser(email, password);
+    if (user) {
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          email: user.email,
+        },
+        "secret",
+        {
+          expiresIn: "24h",
+        }
+      );
+      res.cookie("jwtToken", token, {
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.cookie("userId", user._id, {
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.cookie("userInfo", JSON.stringify(user), {
+        maxAge: 24 * 60 * 60 * 1000,
+      });
+      res.status(200).send({
+        jwtToken: token,
+        user: user,
+      });
+    } else {
+      res.status(401).send("Invalid credentials");
     }
   }
 

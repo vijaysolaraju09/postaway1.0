@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../styles/commentCard.module.css";
 import axios from "axios";
 import ShortProfile from "./ShortProfile";
+import { API_URL } from "../utils/helper";
 
 const CommentCard = ({ comment }) => {
   const [user, setUser] = useState({});
@@ -11,7 +12,7 @@ const CommentCard = ({ comment }) => {
     const fetchUser = async () => {
       try {
         const userResponse = await axios.get(
-          `/api/users/get-user-by-id/${comment.userId}`
+          `${API_URL}/api/users/get-user-by-id/${comment.userId}`
         );
         // console.log(userResponse.data);
         setUser(userResponse.data);

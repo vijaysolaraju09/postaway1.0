@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import styles from "../styles/editPostModel.module.css";
 import Form from "react-bootstrap/Form";
+import { API_URL } from "../utils/helper";
 
 const EditPostModal = ({ post, onUpdate }) => {
   const [show, setShow] = useState(false);
@@ -28,11 +29,15 @@ const EditPostModal = ({ post, onUpdate }) => {
     }
 
     try {
-      const response = await axios.put(`/api/posts/${post._id}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.put(
+        `${API_URL}/api/posts/${post._id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       onUpdate(response.data);
       handleClose();
     } catch (err) {
