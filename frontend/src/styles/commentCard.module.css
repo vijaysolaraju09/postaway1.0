@@ -1,0 +1,19 @@
+.userProfile {
+  border-bottom: 1px solid lightgrey;
+}
+
+.container {
+  border-radius: 20px;
+  background: linear-gradient(to bottom, black, #1e1424);
+  padding: 20px;
+  margin: 10px 0;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}

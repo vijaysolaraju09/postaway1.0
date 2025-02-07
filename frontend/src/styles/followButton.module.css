@@ -1,0 +1,57 @@
+.followBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.btnprimary {
+  background-color: #1e1e2f;
+  border: none;
+  color: #ffffff;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btnprimary:hover {
+  background-color: #27293d;
+}
+
+.btnprimary:active {
+  transform: scale(0.95);
+}
+
+.btnprimary:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0)
+  );
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+  opacity: 0;
+}
+
+.btnprimary:hover:before {
+  opacity: 1;
+  width: 400%;
+  height: 400%;
+}
+
+.btnprimary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}

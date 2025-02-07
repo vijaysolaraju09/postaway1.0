@@ -1,0 +1,282 @@
+.container a {
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.clickableWrapper {
+  position: relative;
+  display: inline-block;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s all ease-in-out;
+}
+
+.clickableWrapper:hover {
+  transform: translateX(0.5rem);
+}
+
+.clickableWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(
+    to right,
+    rgba(147, 112, 219, 0.5),
+    rgba(147, 112, 219, 0)
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.clickableWrapper:hover::before {
+  transform: translateX(0);
+  padding: 0.5rem;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  background-color: transparent; /* Ensure no default styles */
+}
+
+.followerText h2 {
+  margin: 0;
+}
+
+.myCollapse {
+  width: 100%;
+  margin-top: 10px;
+  transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+  overflow: hidden;
+}
+
+.card {
+  border: none;
+  background-color: #1f2a38; /* Darker card background */
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Softer shadow */
+  overflow: hidden;
+}
+
+.followerBox {
+  padding: 20px;
+  background: linear-gradient(
+    135deg,
+    #2c3e50 0%,
+    #1c1c1c 100%
+  ); /* Gradient background */
+  border-radius: 10px;
+}
+
+.icon {
+  display: flex;
+  height: 100%;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+
+.manageButton {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.contentWrapper {
+  margin-left: 2.5rem;
+  border-left: 2px solid white;
+}
+
+.contentBox {
+  background: linear-gradient(
+    135deg,
+    #1e3c72 0%,
+    #2a5298 100%
+  ); /* Gradient background for dropdown */
+  color: #f8f9fa; /* Light text color */
+  padding: 1rem;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid #333; /* Subtle border */
+}
+
+.contentBox h2 {
+  margin: 0 0 1rem 0;
+  color: #d4af37; /* Gold color for headers */
+}
+
+.contentBox p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  color: #b0b0b0; /* Light gray for paragraph text */
+}
+
+.manageButton:hover {
+  transition: color 0.3s ease-in-out;
+}
+
+.collapse.show {
+  max-height: 1000px;
+  opacity: 1;
+  transition: max-height 0.5s ease-in, opacity 0.5s ease-in;
+}
+
+.collapse:not(.show) {
+  max-height: 0;
+  opacity: 0;
+}
+
+/* ------------Manage Followers-------------- */
+
+.container Button {
+  color: white;
+  padding: 0;
+}
+
+.container Button h2 {
+  margin: 0;
+}
+
+.offCanvas {
+  background: linear-gradient(135deg, #2c3e50, #4c669f, #3b5998);
+  color: white; /* Ensure text is readable against the gradient */
+  padding: 20px; /* Optional: Add padding for better content spacing */
+  border-radius: 8px; /* Optional: Add rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.userCard {
+  background: linear-gradient(135deg, #34495e, #5d6d7e);
+  border: 2px solid #4c669f;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s all ease-in-out;
+}
+
+.userCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.userProfile {
+  flex: 1;
+  /* padding: 10px; */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.removeFollower {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.removeFollower button {
+  background-color: #4c669f;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+}
+
+.removeFollower button:hover {
+  background-color: red;
+  color: white;
+  transform: scale(1.1);
+}
+
+.text {
+  margin: 0.5rem;
+}
+
+/* ----------------Manage Following------------------------ */
+.container Button {
+  color: white;
+  padding: 0;
+}
+
+.container Button h2 {
+  margin: 0;
+}
+
+.offCanvas {
+  background: linear-gradient(135deg, #2c3e50, #4c669f, #3b5998);
+  color: white; /* Ensure text is readable against the gradient */
+  padding: 20px; /* Optional: Add padding for better content spacing */
+  border-radius: 8px; /* Optional: Add rounded corners for a modern look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+}
+
+.userCard {
+  background: linear-gradient(135deg, #34495e, #5d6d7e);
+  border: 2px solid #4c669f;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: 0.3s all ease-in-out;
+}
+
+.userCard:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.userProfile {
+  flex: 1;
+  /* padding: 10px; */
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.removeFollower {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.removeFollower button {
+  background-color: #4c669f;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 5px 10px;
+  transition: 0.3s all ease-in-out;
+  cursor: pointer;
+}
+
+.removeFollower button:hover {
+  background-color: red;
+  color: white;
+  transform: scale(1.1);
+}
+
+.text {
+  margin: 0.5rem;
+}

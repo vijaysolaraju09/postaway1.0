@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* background-color: black; */
+  background-color: rgb(2, 2, 41);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #7303c0, #ec38bc, #fdeff9);
+}
+.following_followingContainer__UbZMx .shortProfile_profileLink__aO6xW,
+.followers_followersContainer__5K9c8 .shortProfile_profileLink__aO6xW {
+  background: linear-gradient(45deg, #000000, #cb5231);
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.following_followingContainer__UbZMx
+  .shortProfile_profileLink__aO6xW
+  .shortProfile_profile__nYbNC,
+.followers_followersContainer__5K9c8
+  .shortProfile_profileLink__aO6xW
+  .shortProfile_profile__nYbNC {
+  border-radius: 0;
+  width: 100%;
+}
+
+/* .profile_container__2Krnr .profile_createPost__K7zNN {
+  background: blue;
+  border-radius: 0;
+  padding: 0;
+  font-size: 20px;
+}
+
+.profile_container__2Krnr .createPost_clickable__8JHHx h2 {
+  font-size: 20px;
+} */

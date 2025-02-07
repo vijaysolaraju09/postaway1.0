@@ -1,0 +1,13 @@
+.profileCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #9400f7;
+  color: #fff;
+  border-radius: 50%;
+  width: 2rem; /* Adjust the width as needed */
+  height: 2rem; /* Adjust the height as needed */
+  font-size: 1.5rem; /* Adjust the font size as needed */
+  font-weight: bold; /* Makes the text bold */
+  margin: 0.5rem;
+}

@@ -1,0 +1,232 @@
+.container {
+  display: flex;
+  /* justify-content: space-between; */
+}
+
+.column1 {
+  min-height: 100vh;
+  padding: 1rem;
+  border-right: 1px solid white;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0d0d0d, #1a1a1a, #2e2e2e);
+}
+
+.column2 {
+  /* background-color: #1b1b1b; */
+}
+
+.stickyComponents {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+
+.logo {
+  height: 10rem;
+  width: 18rem;
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.logo img {
+  height: 100%;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.createPost {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.manageButton {
+  margin: 0.5rem 0;
+}
+
+.clickable {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+  display: inline-block;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.5s all ease-in-out;
+}
+
+.clickable:hover {
+  transform: translateX(0.5rem);
+}
+
+.clickable::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50px;
+  background: linear-gradient(
+    to right,
+    rgba(147, 112, 219, 0.5),
+    rgba(147, 112, 219, 0)
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease-in-out;
+  pointer-events: none;
+}
+
+.clickable:hover::before {
+  transform: translateX(0);
+}
+
+.icon {
+  display: flex;
+  height: 2rem;
+  margin: 0.5rem;
+}
+
+.userInfo {
+  padding: 0.5rem;
+  border-radius: 30px;
+  border: 2px solid violet;
+  margin: 1rem;
+  background: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+  /* box-shadow: 0 0 15px 2px violet; */
+  /* animation: glowing 1.5s infinite; */
+}
+
+.profileCircle {
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  width: 130px;
+}
+
+.textualInfo {
+  margin: 0.5rem 2rem;
+  padding: 0.5rem;
+}
+/* 
+.nameAndProfile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+} */
+
+.userName {
+  margin: 0.5rem;
+}
+
+.editProfile {
+  margin: 0.5rem;
+}
+
+.editProfileBtn {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.editProfileBtn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.editProfileBtn:active {
+  background-color: #00408b;
+  transform: translateY(0);
+}
+
+.editProfileBtn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.userStats {
+  font-size: 18px;
+  color: #e0e0e0;
+  text-align: center;
+  display: inline-block;
+  padding: 8px 15px;
+  background: linear-gradient(45deg, #333, #555);
+  border-radius: 8px;
+  font-style: italic;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.number {
+  color: #61dafb;
+}
+
+.userStats:hover {
+  background: linear-gradient(45deg, #444, #666);
+  transform: translateY(-2px);
+}
+
+.userStats:active {
+  background: linear-gradient(45deg, #222, #444);
+  transform: translateY(0);
+}
+
+.noOfPosts {
+  margin: 1rem;
+}
+
+.noOfFollowers {
+  margin: 1rem;
+}
+
+.noOfFollowing {
+  margin: 1rem;
+}
+
+.userContent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 2px solid violet;
+  margin: 1rem;
+  background: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+  /* box-shadow: 0 0 15px 2px violet; */
+  /* animation: glowing 1.5s infinite; */
+}
+
+@keyframes glowing {
+  0% {
+    box-shadow: 0 0 5px 2px violet;
+  }
+  50% {
+    box-shadow: 0 0 15px 2px violet;
+  }
+  100% {
+    box-shadow: 0 0 5px 2px violet;
+  }
+}

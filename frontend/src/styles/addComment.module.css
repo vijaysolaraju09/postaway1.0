@@ -1,0 +1,26 @@
+.container {
+  border-top: 1px solid lightgrey;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.commentBox {
+  background-color: black;
+  color: white;
+  margin: 0.5rem 0;
+}
+
+.commentBox:focus {
+  background-color: black;
+  color: white;
+}
+
+.commentBtn {
+  border-radius: 20px;
+  background-color: violet;
+  transition: all 0.5s;
+}
+
+.commentBtn:hover {
+  background-color: blueviolet;
+}

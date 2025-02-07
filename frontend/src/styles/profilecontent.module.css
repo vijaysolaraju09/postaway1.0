@@ -1,0 +1,4 @@
+.postsTab {
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,127 @@
+.followingContainer {
+  width: 100%;
+}
+
+.followingBox {
+  background-color: white;
+  border-radius: 0;
+  padding: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.followingBox p {
+  color: #ccc;
+}
+
+.myCollapse {
+  border-left: 3px solid orange;
+  margin: 0.5rem;
+  padding: 0;
+  overflow: hidden;
+}
+
+.myCollapse.collapsing {
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.myCollapse.show {
+  max-height: 100vh;
+  opacity: 1;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.myCollapse .card {
+  border: none;
+}
+
+.myCollapse .card-body {
+  padding: 0;
+}
+
+.followingsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.followingText {
+  min-width: 7rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(45deg, #ff7e5f, #ffb88c);
+  border-radius: 30px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.followingText div {
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.followingText i {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.followingsCount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: #ff4757;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 0.2rem;
+}
+
+.followingText:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.followingText:hover .followingsCount {
+  background-color: #e84118;
+  transform: scale(1.1);
+}
+
+/* .following_followingsList__fhUEE {
+  background: linear-gradient(45deg, #ff7e5f, #ffb88c);
+} */
+/* .followingBox{
+    background-color: black;
+}
+
+.myCollapse   {
+    border-left: 2px solid grey;
+    margin: 0.5rem;
+    padding: 0;
+}
+
+.followingText{
+    min-width: 7rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.followingsCount{
+    border-radius: 50px;
+    height: 2rem;
+    width: 2rem;
+    background-color: red;
+    padding: 0.2rem;
+} */
