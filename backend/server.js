@@ -30,22 +30,15 @@ server.use(
   })
 );
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 server.use("/api/users", userRouter);
 server.use("/api/posts", postRouter);
 server.use("/api/comments", jwtAuth, commentRouter);
 server.use("/api/likes", jwtAuth, likesRouter);
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
 
 server.listen(PORT, () => {
   console.log(`Server is up and running at Port: ${PORT}`);
