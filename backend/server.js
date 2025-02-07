@@ -3,7 +3,6 @@ import session from "express-session";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import cors from "cors";
-import path from "path";
 
 import userRouter from "./features/users/users.routes.js";
 import postRouter from "./features/posts/posts.routes.js";
@@ -42,8 +41,10 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-server.get("*", (req, res) => {
-  res.sendFile(path.join(path.resolve(), "../frontend/build", "index.html"));
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 server.listen(PORT, () => {
