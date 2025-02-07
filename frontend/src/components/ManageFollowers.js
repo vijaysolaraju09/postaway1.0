@@ -22,7 +22,6 @@ const ManageFollowers = ({ name, ...props }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     setFollowerIds(initialFollowerIds);
-    console.log("Follower Ids: " + (followerIds.length == 0));
   }, [initialFollowerIds]);
 
   const handleClose = () => setShow(false);
@@ -30,7 +29,6 @@ const ManageFollowers = ({ name, ...props }) => {
 
   const handleRemoveFollower = async (followerId) => {
     try {
-      console.log("Follower Id" + followerId);
       const removeResponse = await axios.delete(
         `/api/users/remove-follower/${followerId}`
       );
@@ -39,7 +37,6 @@ const ManageFollowers = ({ name, ...props }) => {
       setFollowerIds((prevFollowerIds) =>
         prevFollowerIds.filter((f) => f !== followerId)
       );
-      console.log(followerIds);
     } catch (err) {
       console.log("Error while removing follower: " + err);
     }

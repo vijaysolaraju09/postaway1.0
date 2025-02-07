@@ -46,7 +46,7 @@ const Following = () => {
       >
         <div className={styles.followingText}>
           <div>
-            <i class="fa-solid fa-check"></i>Following
+            <i classNaame="fa-solid fa-check"></i>Following
           </div>
           <div className={styles.followingsCount}>{followings.length}</div>
         </div>

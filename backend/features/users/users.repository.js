@@ -19,7 +19,7 @@ export default class UserRepository {
 
       return newUser;
     } catch (err) {
-      console.log("Error while creating user account: " + err);
+      console.error("Error while creating user account:", err);
       throw err;
     }
   }
@@ -29,7 +29,7 @@ export default class UserRepository {
       const user = await UserModel.findOne({ email, password });
       return user;
     } catch (err) {
-      console.log("Error while searching user: " + err);
+      console.error("Error while searching user:", err);
       throw err;
     }
   }
@@ -37,27 +37,26 @@ export default class UserRepository {
   async getOneUser(userId) {
     try {
       const user = await UserModel.findById(userId);
-
       return user;
     } catch (err) {
-      console.log("Error while getting one user: " + err);
+      console.error("Error while getting one user:", err);
       throw err;
     }
   }
 
   async getAllUsers() {
     try {
-      const users = UserModel.find();
+      const users = await UserModel.find();
       return users;
     } catch (err) {
-      console.log("Error while fetching all users: " + err);
+      console.error("Error while fetching all users:", err);
       throw err;
     }
   }
 
   async addFollower(currUserId, userId) {
     try {
-      if (currUserId != userId) {
+      if (currUserId !== userId) {
         await UserModel.findByIdAndUpdate(userId, {
           $addToSet: { followerIds: currUserId },
         });
@@ -68,7 +67,7 @@ export default class UserRepository {
       }
       return false;
     } catch (err) {
-      console.log("Error while adding follower: " + err);
+      console.error("Error while adding follower:", err);
       throw err;
     }
   }
@@ -83,7 +82,7 @@ export default class UserRepository {
       });
       return true;
     } catch (err) {
-      console.log("Error while removing following: " + err);
+      console.error("Error while removing following:", err);
       throw err;
     }
   }
@@ -98,7 +97,7 @@ export default class UserRepository {
       });
       return true;
     } catch (err) {
-      console.log("Error while removing follower: " + err);
+      console.error("Error while removing follower:", err);
       throw err;
     }
   }
@@ -112,7 +111,7 @@ export default class UserRepository {
       }
       return false;
     } catch (err) {
-      console.log("Error while checking if is follower: " + err);
+      console.error("Error while checking if is follower:", err);
       throw err;
     }
   }
@@ -122,7 +121,7 @@ export default class UserRepository {
       await UserModel.findByIdAndUpdate(userId, { otp, otpExpires });
       return true;
     } catch (err) {
-      console.log("Error while setting OTP: " + err);
+      console.error("Error while setting OTP:", err);
       throw err;
     }
   }
@@ -130,11 +129,6 @@ export default class UserRepository {
   async verifyOtp(userId, email, otp) {
     try {
       const user = await UserModel.findOne({ _id: userId, otp });
-      console.log("User Id: " + userId);
-      console.log("User email: " + email);
-      console.log(user.otp);
-      console.log(user.otpExpires);
-      console.log(Date.now());
       if (user && user.otpExpires > Date.now()) {
         user.email = email;
         await user.save();
@@ -142,7 +136,7 @@ export default class UserRepository {
       }
       return false;
     } catch (err) {
-      console.log("Error while verifying OTP: " + err);
+      console.error("Error while verifying OTP:", err);
       throw err;
     }
   }
@@ -152,7 +146,7 @@ export default class UserRepository {
       await UserModel.findByIdAndUpdate(userId, { name: newUserName });
       return true;
     } catch (err) {
-      console.log("Error while updating user name: " + err);
+      console.error("Error while updating user name:", err);
       throw err;
     }
   }

@@ -163,14 +163,14 @@ const LikedPosts = ({ userId }) => {
                   </div>
                   {post.imagePath === "" && (
                     <Card.Img
-                      class={styles.postImage}
+                      className={styles.postImage}
                       variant="top"
                       src="/uploads/noImageAvailable.png"
                     />
                   )}
                   {post.imagePath !== "" && (
                     <Card.Img
-                      class={styles.postImage}
+                      className={styles.postImage}
                       variant="top"
                       src={post.imagePath}
                     />

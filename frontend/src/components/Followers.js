@@ -26,7 +26,7 @@ const Followers = () => {
     } catch (err) {
       console.log(err);
     } finally {
-      dispatch(stopLoading);
+      dispatch(stopLoading());
     }
   };
 
@@ -48,7 +48,7 @@ const Followers = () => {
       >
         <div className={styles.followerText}>
           <div>
-            <i class="fa-solid fa-check-double"></i>Followers
+            <i className="fa-solid fa-check-double"></i>Followers
           </div>
           <div className={styles.followersCount}>{followers.length}</div>
         </div>

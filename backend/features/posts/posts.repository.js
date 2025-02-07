@@ -7,7 +7,7 @@ export default class PostRepository {
       const posts = await PostModel.find().populate("commentIds").exec();
       return posts;
     } catch (err) {
-      console.log("Error while fetching posts: " + err);
+      console.error("Error while fetching posts:", err);
       throw err;
     }
   }
@@ -17,7 +17,7 @@ export default class PostRepository {
       const post = await PostModel.findById(id).populate("commentIds").exec();
       return post;
     } catch (err) {
-      console.log("Error while fetching post by id: " + err);
+      console.error("Error while fetching post by id:", err);
       throw err;
     }
   }
@@ -29,7 +29,7 @@ export default class PostRepository {
         .exec();
       return posts;
     } catch (err) {
-      console.log("Error while fetching posts by user id: " + err);
+      console.error("Error while fetching posts by user id:", err);
       throw err;
     }
   }
@@ -43,11 +43,11 @@ export default class PostRepository {
         commentIds: [],
       });
       await newPost.save();
-      console.log("post created");
+      console.log("Post created");
 
       return newPost;
     } catch (err) {
-      console.log("Error while creating post: " + err);
+      console.error("Error while creating post:", err);
       throw err;
     }
   }
@@ -55,8 +55,12 @@ export default class PostRepository {
   async deletePost(postId) {
     try {
       const result = await PostModel.deleteOne({ _id: postId });
+      if (result.deletedCount === 0) {
+        return null;
+      }
+      return result;
     } catch (err) {
-      console.log("Error while deleting the post: " + err);
+      console.error("Error while deleting the post:", err);
       throw err;
     }
   }
@@ -72,7 +76,7 @@ export default class PostRepository {
         .exec();
       return updatedPost;
     } catch (err) {
-      console.log("Error while updating post: " + err);
+      console.error("Error while updating post:", err);
       throw err;
     }
   }
@@ -82,7 +86,7 @@ export default class PostRepository {
       const count = await PostModel.countDocuments({ _id: postId });
       return count > 0;
     } catch (err) {
-      console.log("Error while checking if post exists: " + err);
+      console.error("Error while checking if post exists:", err);
       throw err;
     }
   }
@@ -96,7 +100,7 @@ export default class PostRepository {
       }
       return null;
     } catch (err) {
-      console.log("Error while getting user by post: " + err);
+      console.error("Error while getting user by post:", err);
       throw err;
     }
   }

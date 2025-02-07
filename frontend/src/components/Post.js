@@ -77,7 +77,8 @@ const Post = ({ post, fetchPosts }) => {
         setLiked(likedResponse.data);
 
         const commentsResponse = await axios.get(`/api/comments/${post._id}`);
-        setComments(commentsResponse.data);
+
+        setComments(commentsResponse?.data);
 
         // const currUserResponse = await axios.get('/api/users/get-user-id-of-logged-in-user');
         // setCurrUser(currUserResponse.data);

@@ -7,7 +7,7 @@ export default class LikeRepository {
       const likes = await LikeModel.find({ postId });
       return likes;
     } catch (err) {
-      console.log("Error while fetching likes for a post: " + err);
+      console.error("Error while fetching likes for a post:", err);
       throw err;
     }
   }
@@ -33,27 +33,27 @@ export default class LikeRepository {
         return { found: true, liked: true };
       }
     } catch (err) {
-      console.log("Error while fetching like status: " + err);
+      console.error("Error while toggling like status:", err);
       throw err;
     }
   }
 
   async likesForAPost(postId) {
     try {
-      const likes = LikeModel.find({ postId });
+      const likes = await LikeModel.find({ postId });
       return likes;
     } catch (err) {
-      console.log("Error while fetching likes for a post: " + err);
+      console.error("Error while fetching likes for a post:", err);
       throw err;
     }
   }
 
   async postsLikedByUser(userId) {
     try {
-      const likes = LikeModel.find({ userId });
+      const likes = await LikeModel.find({ userId });
       return likes;
     } catch (err) {
-      console.log("Error while getting posts liked by user: " + err);
+      console.error("Error while getting posts liked by user:", err);
       throw err;
     }
   }
@@ -61,10 +61,9 @@ export default class LikeRepository {
   async isLikedByUser(userId, postId) {
     try {
       const like = await LikeModel.findOne({ userId, postId });
-      // console.log('Like status: ' + like);
       return like ? true : false;
     } catch (err) {
-      console.log("Error while getting posts liked by user: " + err);
+      console.error("Error while checking if post is liked by user:", err);
       throw err;
     }
   }

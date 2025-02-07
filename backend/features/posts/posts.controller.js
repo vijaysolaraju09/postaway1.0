@@ -1,47 +1,53 @@
-// import cloudinary from "../../config/cloudinaryConfig.js";
-import PostModel from "./posts.model.js";
 import PostRepository from "./posts.repository.js";
 import cloudinary from "cloudinary";
-import dotenv from "dotenv";
-dotenv.config();
 
-cloudinary.config({
-  cloud_name: "doh1nhfmm",
-  api_key: "751694972739347",
-  api_secret: "uiGSuxwnyWfCX9pC3HLurk5ZC0U",
-});
 export default class PostController {
   constructor() {
     this.postRepository = new PostRepository();
   }
 
   async getAllPosts(req, res, next) {
-    const posts = await this.postRepository.getAllPosts();
-    if (posts) {
-      res.status(200).send(posts);
-    } else {
-      res.status(500).send("No post found");
+    try {
+      const posts = await this.postRepository.getAllPosts();
+      if (posts) {
+        res.status(200).send(posts);
+      } else {
+        res.status(404).send("No posts found");
+      }
+    } catch (err) {
+      console.error("Error fetching all posts:", err);
+      res.status(500).send("Internal server error");
     }
   }
 
   async getOnePost(req, res, next) {
-    const postId = req.params.id;
-    const post = await this.postRepository.getPostById(postId);
-    if (post) {
-      res.status(200).send(post);
-    } else {
-      res.status(500).send("No such post found");
+    try {
+      const postId = req.params.id;
+      const post = await this.postRepository.getPostById(postId);
+      if (post) {
+        res.status(200).send(post);
+      } else {
+        res.status(404).send("No such post found");
+      }
+    } catch (err) {
+      console.error("Error fetching post by id:", err);
+      res.status(500).send("Internal server error");
     }
   }
 
   async getUserPosts(req, res, next) {
-    const userId = req.cookies.userId;
-    const posts = await this.postRepository.getPostsByUserId(userId);
-    console.log(posts);
-    if (posts) {
-      res.status(200).send(posts);
-    } else {
-      res.status(500).send("Looks like its time to create your first post");
+    try {
+      const userId = req.cookies.userId;
+      const posts = await this.postRepository.getPostsByUserId(userId);
+      console.log(posts);
+      if (posts) {
+        res.status(200).send(posts);
+      } else {
+        res.status(404).send("Looks like it's time to create your first post");
+      }
+    } catch (err) {
+      console.error("Error fetching user posts:", err);
+      res.status(500).send("Internal server error");
     }
   }
 
@@ -87,45 +93,73 @@ export default class PostController {
   }
 
   async deleteAPost(req, res, next) {
-    const postId = req.params.id;
-    const deleteResult = await this.postRepository.deletePost(postId);
-    if (deleteResult) {
-      res.status(201).send("Post deleted successfully");
-    } else {
-      res.status(500).send("Post not found");
+    try {
+      const postId = req.params.id;
+      const deleteResult = await this.postRepository.deletePost(postId);
+      if (deleteResult) {
+        res.status(200).send("Post deleted successfully");
+      } else {
+        res.status(404).send("Post not found");
+      }
+    } catch (err) {
+      console.error("Error deleting post:", err);
+      res.status(500).send("Internal server error");
     }
   }
 
   async updateAPost(req, res, next) {
-    const userId = req.cookies.userId;
-    const postId = req.params.postId;
-    const { caption } = req.body;
-    let imagePath = req.body.imagePath;
-    if (req.file) {
-      imagePath = req.file.path;
-    }
-    const updateResult = await this.postRepository.updatePost(
-      userId,
-      postId,
-      caption,
-      imagePath
-    );
-    if (updateResult) {
-      res.status(201).send(updateResult);
-    } else {
-      res.status(500).send("Post not found");
+    try {
+      const userId = req.cookies.userId;
+      const postId = req.params.postId;
+      const { caption } = req.body;
+      let imagePath = req.body.imagePath;
+      if (req.file) {
+        imagePath = req.file.path;
+      }
+      const updateResult = await this.postRepository.updatePost(
+        userId,
+        postId,
+        caption,
+        imagePath
+      );
+      if (updateResult) {
+        res.status(200).send(updateResult);
+      } else {
+        res.status(404).send("Post not found");
+      }
+    } catch (err) {
+      console.error("Error updating post:", err);
+      res.status(500).send("Internal server error");
     }
   }
 
   async getUserFromPost(req, res, next) {
-    const postId = req.params.postId;
-    const user = await this.postRepository.getUsersByPost(postId);
-    res.status(200).send(user);
+    try {
+      const postId = req.params.postId;
+      const user = await this.postRepository.getUsersByPost(postId);
+      if (user) {
+        res.status(200).send(user);
+      } else {
+        res.status(404).send("User not found for this post");
+      }
+    } catch (err) {
+      console.error("Error fetching user by post:", err);
+      res.status(500).send("Internal server error");
+    }
   }
 
   async getOneUserPosts(req, res, next) {
-    const userId = req.params.userId;
-    const posts = await this.postRepository.getPostsByUserId(userId);
-    res.status(200).send(posts);
+    try {
+      const userId = req.params.userId;
+      const posts = await this.postRepository.getPostsByUserId(userId);
+      if (posts) {
+        res.status(200).send(posts);
+      } else {
+        res.status(404).send("No posts found for this user");
+      }
+    } catch (err) {
+      console.error("Error fetching posts by user id:", err);
+      res.status(500).send("Internal server error");
+    }
   }
 }
